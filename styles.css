@@ -2,3 +2,38 @@
     font-family: bitterMedium;
     src: url('fonts/Bitter-Medium.ttf');
 }
+
+.icon {
+    font-family: bitterMedium;
+    font-size: 15px;
+    text-decoration: none;
+    width: 100px;
+    height: 40px;
+    background-color: #5b2b29;
+    color: #fff;
+    border-radius: 10px 10px 10px 10px;
+    border-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: #fff;
+    border-style: solid;
+}
+.icon:hover {
+    /* background-color: #5b2b29; */
+    cursor: pointer;
+}
+.icon:active{
+    background-color: #804240;
+}
+/* 
+.icon:focus {
+    animation: shadow .15s
+    ease-in-out;
+}
+@keyframes shadow {
+    0% {
+    }
+    100% {
+    }
+} */
