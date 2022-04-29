@@ -1,6 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @font-face {
     font-family: bitterMedium;
     src: url('fonts/Bitter-Medium.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: bitterMedium;
+}
+/* 
+.about-me {
+    position: absolute;
+    color: white;
+    width: 25vw;
+    height: 20vh;
+    left: 0;
+    right: 0;
+    top: 20%;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-me-main {
+    font-family: bitterMedium;
+    font-size: 40px;
+    line-height: 0;
+    margin-top: 2vh;
+}
+
+.about-me-minor {
+    font-family: bitterMedium;
+    font-size: 25px;
+    margin-top: 40px;
+    overflow: wrap;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .icon {
@@ -21,19 +68,41 @@
 }
 .icon:hover {
     /* background-color: #5b2b29; */
-    cursor: pointer;
-}
+    
 .icon:active{
     background-color: #804240;
 }
-/* 
-.icon:focus {
-    animation: shadow .15s
-    ease-in-out;
+
+#green-book-1{
+    position: absolute;
+    width: calc(80px);
+    height: 26.272vh;
+    /* left: calc(371px + 15.082vw); */
+    left: calc(0.15082 * 1920px - (1920px - 100vw) / 2 + 80px);
+    top: 39.223vh;
 }
-@keyframes shadow {
-    0% {
-    }
-    100% {
-    }
+
+#green-book-1:hover{
+    cursor: pointer;
 } */
+
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #340e0e;
+    /* border-radius: 3px; */
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #5b2b29;
+    /* border-radius: 3px; */
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #522422;
+  }

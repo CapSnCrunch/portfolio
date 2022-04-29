@@ -5,18 +5,41 @@
     <title>Samuel Perales | Home</title>
     <link rel = 'preconnect' href = 'https://fonts.gstatic.com'>
     <link href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap' rel = 'stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a2275cde5f.js" crossorigin="anonymous"></script>
     <link rel = 'stylesheet' href = 'styles.css'>
   </head>
-  <body style='display: flex; flex-direction: column; background-image: url("assets/shelfWithHoles.png"); background-position: center; background-size: cover; overflow: hidden; width: 100vw; height: 100vh;'>
-      <div style='position: absolute; color: white; width: 30vw; height: 20vh; left: 0; right: 0; top: 0; bottom: 0; margin: auto;'>
-        <h3 style='font-family: bitterMedium; font-size: 40px; line-height: 0; margin-top: 2vh;'>Hi, I'm Sam!</h3>
-        <h3 style='font-family: bitterMedium; font-size: 25px; overflow: wrap;'>I'm a web developer, data scientist, and mathematician.</h3>
-        <div style='display: flex; justify-content: space-around; margin-top: 20px;'>
-          <button class='icon'>Resume</button>
-          <button class='icon'>Github</button>
-          <button class='icon'>LinkedIn</button>
+  <body class='bg-[#340e0e]'>
+    <div class='absolute flex flex-col w-full'>
+      <div class='flex flex-col w-[90%] mx-auto'>
+        <img src='assets/newShelfHoles.png' class='relative mx-auto w-full' />
+        <div class='absolute flex flex-col inset-0 top-[20%] mx-auto w-[35%] h-[20%]'>
+          <h1 class='text-white text-2xl 2xl:text-6xl xl:text-5xl lg:text-4xl sm:text-3xl mx-auto'>Hi, I'm Sam!</h1>
+          <h1 class='text-white text-xs 2xl:text-2xl xl:text-xl lg:text-base sm:text-sm mx-auto mt-4'>Web Developer | Data Scientist | Mathematician</h1>
+          <div class='flex flex-row justify-around mt-2 mx-8 2xl:mt-6 xl:mt-6 lg:mt-6 md:mt-4 sm:mt-2'>
+            <a class='flex text-white text-sm 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base'>
+              <i class='fa-solid fa-file mr-2 my-auto'></i>
+              <h1 class='my-auto'>Resume</h1>
+            </a>
+            <a href='https://github.com/CapSnCrunch' class='flex text-white text-sm 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base'>
+              <i class='fa-brands fa-github mr-2 my-auto'></i>
+              <h1 class='my-auto'>GitHub</h1
+            </a>
+            <a href='https://www.linkedin.com/in/samuel-perales/' class='flex text-white text-sm 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base'>
+              <i class='fa-brands fa-linkedin mr-2 my-auto'></i>
+              <h1 class='my-auto'>LinkedIn</h1>
+            </a>
+          </div>
         </div>
+        <img src='assets/orangeBook.png' class='absolute animate-pulse aspect-auto w-[3.43%] h-[12.39%] left-[16.5%] top-[3.08%] shadow-[0_0px_10px_10px_rgba(255,255,0,0.7)]
+        hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' />
+        <img src='assets/greenBook.png' class='absolute animate-pulse aspect-auto w-[4.1%] h-[12.39%] left-[81.7%] top-[20.22%] shadow-[0_0px_10px_10px_rgba(255,255,0,0.7)]
+        hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' />
+        <img src='assets/orangeBook.png' class='absolute animate-pulse aspect-auto w-[3.2%] h-[12.39%] left-[26.8%] top-[37.52%] shadow-[0_0px_10px_10px_rgba(255,255,0,0.7)]
+        hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' />
+        <img src='assets/purpleBook.png' class='absolute animate-pulse aspect-auto w-[3%] h-[13.39%] left-[57.2%] top-[36.52%] shadow-[0_0px_10px_10px_rgba(255,255,0,0.7)]
+        hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' />
       </div>
-      <img src='assets/purpleBook.png' style='width: 3.333vw;' />
+    </div>
   </body>
 </html>
