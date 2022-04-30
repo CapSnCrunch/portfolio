@@ -11,6 +11,85 @@
     <link rel = 'stylesheet' href = 'styles.css'>
   </head>
   <body class='bg-[#340e0e]'>
+    <script>
+      var doc = window.document,
+      context = doc.querySelector('.js-loop'),
+      clones = context.querySelectorAll('.is-clone'),
+      disableScroll = false,
+      scrollHeight = 0,
+      scrollPos = 0,
+      clonesHeight = 0,
+      i = 0;
+
+      function getScrollPos () {
+        return (context.pageYOffset || context.scrollTop) - (context.clientTop || 0);
+      }
+
+      function setScrollPos (pos) {
+        context.scrollTop = pos;
+      }
+
+      function getClonesHeight () {
+        clonesHeight = 0;
+
+        for (i = 0; i < clones.length; i += 1) {
+          clonesHeight = clonesHeight + clones[i].offsetHeight;
+        }
+
+        return clonesHeight;
+      }
+
+      function reCalc () {
+        scrollPos = getScrollPos();
+        scrollHeight = context.scrollHeight;
+        clonesHeight = getClonesHeight();
+
+        if (scrollPos <= 0) {
+          setScrollPos(1); // Scroll 1 pixel to allow upwards scrolling
+        }
+      }
+
+      function scrollUpdate () {
+        if (!disableScroll) {
+          scrollPos = getScrollPos();
+
+          if (clonesHeight + scrollPos >= scrollHeight) {
+            // Scroll to the top when you’ve reached the bottom
+            setScrollPos(1); // Scroll down 1 pixel to allow upwards scrolling
+            disableScroll = true;
+          } else if (scrollPos <= 0) {
+            // Scroll to the bottom when you reach the top
+            setScrollPos(scrollHeight - clonesHeight);
+            disableScroll = true;
+          }
+        }
+
+        if (disableScroll) {
+          // Disable scroll-jumping for a short time to avoid flickering
+          window.setTimeout(function () {
+            disableScroll = false;
+          }, 40);
+        }
+      }
+
+      function init () {
+        reCalc();
+        
+        context.addEventListener('scroll', function () {
+          window.requestAnimationFrame(scrollUpdate);
+        }, false);
+
+        window.addEventListener('resize', function () {
+          window.requestAnimationFrame(reCalc);
+        }, false);
+      }
+
+      if (document.readyState !== 'loading') {
+        init()
+      } else {
+        doc.addEventListener('DOMContentLoaded', init, false)
+      }
+    </script>
     <div class='absolute flex flex-col w-full'>
       <div class='flex flex-col w-[90%] mx-auto'>
         <!-- <img src='assets/newShelfHoles.png' class='relative mx-auto w-full' /> -->
@@ -24,56 +103,142 @@
             Web Developer | Data Scientist | Mathematician
           </h1>
           <div class='flex flex-row justify-around mt-2 mx-8 2xl:mt-6 xl:mt-6 lg:mt-6 md:mt-4 sm:mt-2'>
-            <a class='flex text-white text-sm 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base'>
+            <a href='' target='_blank' class='flex text-white text-sm 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base'>
               <i class='fa-solid fa-file mr-2 my-auto'></i>
               <h1 class='my-auto'>Resume</h1>
             </a>
-            <a href='https://github.com/CapSnCrunch' class='flex text-white text-sm 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base'>
+            <a href='https://github.com/CapSnCrunch' target='_blank' class='flex text-white text-sm 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base'>
               <i class='fa-brands fa-github mr-2 my-auto'></i>
               <h1 class='my-auto'>GitHub</h1>
             </a>
-            <a href='https://www.linkedin.com/in/samuel-perales/' class='flex text-white text-sm 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base'>
+            <a href='https://www.linkedin.com/in/samuel-perales/' target='_blank' class='flex text-white text-sm 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base'>
               <i class='fa-brands fa-linkedin mr-2 my-auto'></i>
               <h1 class='my-auto'>LinkedIn</h1>
             </a>
           </div>
         </div>
         <!-- About Me -->
-        <div class='absolute flex flex-col inset-0 top-[21.3%] mx-auto w-[60%] h-[10%]'>
+        <div class='absolute flex flex-col inset-0 top-[21.3%] mx-auto w-[75%] h-[10%]'>
           <h1 class='text-white text-lg 2xl:text-4xl xl:text-3xl lg:text-2xl sm:text-xl mx-auto'>
             Welcome to my portfolio!
           </h1>
           <h1 class='text-white leading-8 text-xs 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base mx-auto text-center mt-4' style='line-height: 1.5;'>
             I recently graduated from <span class='text-[#BF5700]'>The University of Texas at Austin</span> with a degree in <span class='text-[#BF5700]'>mathematics</span> 
-            and a certificate in <span class='text-[#BF5700]'>computer science</span>. In my time there, I've had the opportunity to work on many computational research projects in a variety of fields.
+            and a certificate in <span class='text-[#BF5700]'>computer science</span>. In my time there, I've had the opportunity to work on many computational research projects.
+            I've also worked on web dev for these groups and my own personal projects.
           </h1>
-          <h1 class='text-white text-lg 2xl:text-4xl xl:text-3xl lg:text-2xl sm:text-xl mx-auto mt-8'>
+          <h1 class='text-white text-lg 2xl:text-4xl xl:text-3xl lg:text-2xl sm:text-xl mx-auto mt-12'>
             Some of my skills:
           </h1>
           <div class='flex w-[60%] justify-around mx-auto text-white text-4xl 2xl:text-6xl xl:text-6xl lg:text-5xl sm:4xl mt-8'>
-            <i class='fa-brands fa-react hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150'></i>
-            <i class='fa-brands fa-python hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150'></i>
-            <i class='fa-brands fa-js-square hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150'></i>
-            <i class='fa-brands fa-html5 hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150'></i>
-            <i class='fa-brands fa-css3-alt hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150'></i>
-            <i class='fa-solid fa-code-branch hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150'></i>
+            <i class='fa-brands fa-react hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120'></i>
+            <i class='fa-brands fa-python hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120'></i>
+            <i class='fa-brands fa-js-square hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120'></i>
+            <i class='fa-brands fa-html5 hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120'></i>
+            <i class='fa-brands fa-css3-alt hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120'></i>
+            <i class='fa-solid fa-code-branch hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120'></i>
           </div>
-          <div class='flex w-[50%] justify-around mx-auto text-white text-4xl 2xl:text-6xl xl:text-6xl lg:text-5xl sm:4xl mt-6'>
-            <i class='iconify hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' data-icon='simple-icons:firebase'></i>
-            <i class='iconify hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' data-icon='bxl:netlify'></i>
-            <i class='iconify hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' data-icon='file-icons:latex'></i>
-            <i class='iconify hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' data-icon='bxl:tailwind-css'></i>
-            <i class='fa-brands fa-r-project hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150'></i>
+          <div class='flex w-[50%] justify-around mx-auto text-white text-4xl 2xl:text-6xl xl:text-6xl lg:text-5xl sm:4xl mt-4'>
+            <i class='iconify hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120' data-icon='simple-icons:firebase'></i>
+            <i class='iconify hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120' data-icon='bxl:netlify'></i>
+            <i class='iconify hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120' data-icon='file-icons:latex'></i>
+            <i class='iconify hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120' data-icon='bxl:tailwind-css'></i>
+            <i class='fa-brands fa-r-project hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120'></i>
           </div>
         </div>
         <!-- Projects -->
-        <div>
+        <!-- Layolay -->
+        <div class='absolute flex flex-row inset-0 top-[41.3%] left-[10%] mr-auto w-[75%] h-[10%]'>
+          <div class='flex flex-col'>
+            <div class='flex flex-row mr-auto'>
+              <h1 class='text-white text-xl 2xl:text-4xl xl:text-4xl lg:text-3xl sm:text-2xl my-auto'>
+                Layolay
+              </h1>
+              <a href='https://www.layolay.com/' target='_blank' class='my-auto ml-4'>
+                <i class='text-white text-lg fa-solid fa-up-right-from-square'></i>
+              </a>
+            </div>
+            <h1 class='text-white text-base 2xl:text-2xl xl:text-2xl lg:text-xl sm:text-lg mr-auto mt-2'>
+              A 3D-printing ecommerce website
+            </h1>
+            <h1 class='text-white text-sm 2xl:text-lg xl:text-lg lg:text-base sm:text-sm mr-auto mt-2 w-[50%]'>
+              I cofounded a startup seeking to enable 3D artists to sell physical artwork. The website is complete with login authentication, PayPal payments, Firebase backend, realtime chat system, and Three.js.
+            </h1>
+          </div>
+        </div>
+        <div  class='absolute rounded-lg bg-[#9E451A] w-[350px] h-[210px] inset-0 top-[40.9%] left-[48%] p-2'>
+          <a href='https://www.layolay.com/' target='_blank'>
+            <img src='assets/layolay.PNG' class='rounded-lg' />
+          </a>
+        </div>
+        <!-- Academic Blog -->
+        <div class='absolute flex flex-col inset-0 top-[48%] left-[28%] mr-auto w-[72%] h-[10%]'>
+          <div class='flex flex-row mr-auto'>
+            <h1 class='text-white text-xl 2xl:text-4xl xl:text-4xl lg:text-3xl sm:text-2xl'>
+              Academic Blog
+            </h1>
+            <a href='https://samuelperales.xyz/index.html' target='_blank' class='my-auto ml-4'>
+              <i class='text-white text-lg fa-solid fa-up-right-from-square'></i>
+            </a>
+          </div>
+          <h1 class='text-white text-base 2xl:text-2xl xl:text-2xl lg:text-xl sm:text-lg mr-auto mt-2'>
+            Monthly articles on my academic interests
+          </h1>
+          <h1 class='text-white text-sm 2xl:text-lg xl:text-lg lg:text-base sm:text-sm mr-auto mt-2 w-[50%]'>
+            In addition to math, data science, and web dev, I enjoy design, linguistics, esolangs, color science, and many other fields. Check out my pure HTML, CSS, and JS blog to see some of my monthly projects.
+          </h1>
+        </div>
+        <div  class='absolute rounded-lg bg-[#9E451A] w-[350px] h-[215px] inset-0 top-[47.5%] left-[68%] p-2'>
+          <a href='https://samuelperales.xyz/index.html' target='_blank'>
+            <img src='assets/academic-blog.PNG' class='rounded-lg' />
+          </a>
+        </div>
+        <!-- More -->
+        <div class='absolute flex flex-col inset-0 top-[54.7%] left-[10%] mr-auto w-[65%] h-[10%]'>
+          <div class='flex flex-row mr-auto'>
+            <h1 class='text-white text-xl 2xl:text-4xl xl:text-4xl lg:text-3xl sm:text-2xl'>
+              And Many More...
+            </h1>
+            <a href='https://github.com/CapSnCrunch' target='_blank' class='my-auto ml-4'>
+              <i class='text-white text-lg fa-solid fa-up-right-from-square'></i>
+            </a>
+          </div>
+          <div class='flex flex-row mt-4 ml-8 justify-around'>
+            <div class='flex rounded-lg w-[120px] h-[120px] bg-[#9E451A] p-2'>
+              <h1 class='text-white text-lg text-center'>
+              </h1>
+            </div>
+            <div class='flex rounded-lg w-[120px] h-[120px] bg-[#9E451A]'>
 
+            </div>
+            <div class='flex rounded-lg w-[120px] h-[120px] bg-[#9E451A]'>
+
+            </div>
+            <div class='flex rounded-lg w-[120px] h-[120px] bg-[#9E451A]'>
+
+            </div>
+            <div class='flex rounded-lg w-[120px] h-[120px] bg-[#9E451A]'>
+
+            </div>
+            <div class='flex rounded-lg w-[120px] h-[120px] bg-[#9E451A]'>
+
+            </div>
+          </div>
         </div>
         <!-- Contact -->
-        <div>
-
+        <div class='absolute flex flex-col inset-0 top-[68.1%] mx-auto w-[70%] h-[10%]'>
+          <h1 class='text-white text-xl 2xl:text-5xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl mx-auto'>
+            Lets get in touch!
+          </h1>
+          <h1 class='text-white leading-8 text-sm 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-base mx-auto text-center mt-4' style='line-height: 1.5;'>
+            I'm currently searching for <span class='text-[#BF5700]'>Full Stack web development</span> and <span class='text-[#BF5700]'>data engineering</span> positions. If you're interested in hiring me, wanting to ask a question,
+            or just looking to say hi, please reach out!
+          </h1>
+          <a href='mailto:samuelperales4@gmail.com' class='mx-auto rounded-lg border-2 py-2 px-4 mt-8'>
+            <h1 class='text-white text-base 2xl:text-3xl xl:text-3xl lg:text-2xl md:text-xl sm:text-lg'>Contact</h1>
+          </a>
         </div>
+        <!-- Left Navbar -->
 
         <!-- <img src='assets/orangeBook.png' class='absolute animate-pulse aspect-auto w-[3.43%] h-[12.39%] left-[16.5%] top-[3.08%] shadow-[0_0px_10px_10px_rgba(255,255,0,0.7)]
         hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' />
@@ -84,6 +249,13 @@
         <img src='assets/purpleBook.png' class='absolute animate-pulse aspect-auto w-[3%] h-[13.39%] left-[57.2%] top-[36.52%] shadow-[0_0px_10px_10px_rgba(255,255,0,0.7)]
         hover:cursor-pointer transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150' /> -->
       </div>
+      
+      <!-- Right Email Link -->
+      <!-- <div class='absolute flex flex-col inset-0 top-[68.1%] mx-auto w-[70%] h-[10%] rotate-90'>
+        <h1 class='text-white text-xs 2xl:text-xl xl:text-xl lg:text-lg md:text-base sm:text-sm'>
+          samuelperales4@gmail.com
+        </h1>
+      </div> -->
     </div>
   </body>
 </html>
