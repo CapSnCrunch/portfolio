@@ -11,91 +11,12 @@
     <link rel = 'stylesheet' href = 'styles.css'>
   </head>
   <body class='bg-[#340e0e]'>
-    <script>
-      var doc = window.document,
-      context = doc.querySelector('.js-loop'),
-      clones = context.querySelectorAll('.is-clone'),
-      disableScroll = false,
-      scrollHeight = 0,
-      scrollPos = 0,
-      clonesHeight = 0,
-      i = 0;
-
-      function getScrollPos () {
-        return (context.pageYOffset || context.scrollTop) - (context.clientTop || 0);
-      }
-
-      function setScrollPos (pos) {
-        context.scrollTop = pos;
-      }
-
-      function getClonesHeight () {
-        clonesHeight = 0;
-
-        for (i = 0; i < clones.length; i += 1) {
-          clonesHeight = clonesHeight + clones[i].offsetHeight;
-        }
-
-        return clonesHeight;
-      }
-
-      function reCalc () {
-        scrollPos = getScrollPos();
-        scrollHeight = context.scrollHeight;
-        clonesHeight = getClonesHeight();
-
-        if (scrollPos <= 0) {
-          setScrollPos(1); // Scroll 1 pixel to allow upwards scrolling
-        }
-      }
-
-      function scrollUpdate () {
-        if (!disableScroll) {
-          scrollPos = getScrollPos();
-
-          if (clonesHeight + scrollPos >= scrollHeight) {
-            // Scroll to the top when you’ve reached the bottom
-            setScrollPos(1); // Scroll down 1 pixel to allow upwards scrolling
-            disableScroll = true;
-          } else if (scrollPos <= 0) {
-            // Scroll to the bottom when you reach the top
-            setScrollPos(scrollHeight - clonesHeight);
-            disableScroll = true;
-          }
-        }
-
-        if (disableScroll) {
-          // Disable scroll-jumping for a short time to avoid flickering
-          window.setTimeout(function () {
-            disableScroll = false;
-          }, 40);
-        }
-      }
-
-      function init () {
-        reCalc();
-        
-        context.addEventListener('scroll', function () {
-          window.requestAnimationFrame(scrollUpdate);
-        }, false);
-
-        window.addEventListener('resize', function () {
-          window.requestAnimationFrame(reCalc);
-        }, false);
-      }
-
-      if (document.readyState !== 'loading') {
-        init()
-      } else {
-        doc.addEventListener('DOMContentLoaded', init, false)
-      }
-    </script>
-    <div class='absolute flex flex-col w-full'>
+    <div class='absolute flex flex-col w-full 2xl:flex xl:flex lg:flex md:hidden sm:hidden'>
       <div class='flex flex-col w-[90%] mx-auto'>
         <!-- <img src='assets/newShelfHoles.png' class='relative mx-auto w-full' /> -->
         <img src='assets/longShelf.png' class='relative mx-auto w-full' />
         <!-- Introduction -->
-        <div class='absolute flex flex-col inset-0 top-[7.5%] mx-auto w-[35%] h-[10%]'>
+        <div class='absolute flex flex-col inset-0 top-[9.4%] mx-auto w-[35%] h-[12.5%]'>
           <h1 class='text-white text-2xl 2xl:text-6xl xl:text-5xl lg:text-4xl sm:text-3xl mx-auto'>
             Hi, I'm Sam!
           </h1>
@@ -118,8 +39,8 @@
           </div>
         </div>
         <!-- About Me -->
-        <div class='absolute flex flex-col inset-0 top-[21.3%] mx-auto w-[75%] h-[10%]'>
-          <h1 class='text-white text-lg 2xl:text-4xl xl:text-3xl lg:text-2xl md:2xl sm:text-xl mx-auto'>
+        <div class='absolute flex flex-col inset-0 top-[26.4%] mx-auto w-[75%] h-[12.5%]'>
+          <h1 class='text-white text-xl 2xl:text-5xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl mx-auto'>
             Welcome to my portfolio!
           </h1>
           <h1 class='text-white leading-8 text-xs 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-base mx-auto text-center 2xl:mt-4 xl:mt-4 lg:mt-2 md:mt-2 sm:mt-2' style='line-height: 1.5;'>
@@ -138,7 +59,7 @@
             <i class='fa-brands fa-css3-alt hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120'></i>
             <i class='fa-solid fa-code-branch hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120'></i>
           </div>
-          <div class='flex w-[50%] justify-around mx-auto text-white text-4xl 2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl 2xl:mt-6 xl:mt-6 lg:mt-6 md:mt-4 sm:mt-4 mt-4'>
+          <div class='flex w-[50%] justify-around mx-auto text-white text-4xl 2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl 2xl:mt-6 xl:mt-6 lg:mt-4 md:mt-4 sm:mt-4 mt-4'>
             <i class='iconify hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120' data-icon='simple-icons:firebase'></i>
             <i class='iconify hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120' data-icon='bxl:netlify'></i>
             <i class='iconify hover:cursor-pointer transition ease-in-out delay-30 hover:-translate-y-1 hover:scale-110 duration-120' data-icon='file-icons:latex'></i>
@@ -148,7 +69,7 @@
         </div>
         <!-- Projects -->
         <!-- Layolay -->
-        <div class='absolute flex flex-row inset-0 top-[41.3%] left-[10%] mr-auto w-[75%] h-[10%]'>
+        <div class='absolute flex flex-row inset-0 top-[51.1%] left-[10%] mr-auto w-[77%] h-[12.5%]'>
           <div class='flex flex-col'>
             <div class='flex flex-row mr-auto'>
               <h1 class='text-white text-xl 2xl:text-4xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl my-auto'>
@@ -161,18 +82,18 @@
             <h1 class='text-white text-base 2xl:text-2xl xl:text-xl lg:text-lg md:text-lg sm:text-md mr-auto 2xl:mt-2 xl:mt-2 lg:mt-1 md:mt-1 sm:mt-1'>
               A 3D-printing ecommerce website
             </h1>
-            <h1 class='text-white text-xs 2xl:text-lg xl:text-base lg:text-sm md:text-xs sm:text-xs mr-auto w-[50%] 2xl:mt-2 xl:mt-2 lg:mt-1 md:mt-1 sm:mt-1'>
+            <h1 class='text-white text-xs 2xl:text-lg xl:text-base lg:text-sm md:text-xs sm:text-xs mr-auto w-[54%] 2xl:mt-2 xl:mt-2 lg:mt-1 md:mt-1 sm:mt-1'>
               I cofounded a startup seeking to enable 3D artists to sell physical artwork. The website is complete with login authentication, PayPal payments, Firebase backend, realtime chat system, and Three.js.
             </h1>
           </div>
         </div>
-        <div  class='absolute rounded-lg bg-[#9E451A] w-[20vw] aspect-[5/3] inset-0 top-[40.9%] left-[50%] p-2'>
+        <div  class='absolute rounded-lg bg-[#9E451A] w-[18vw] aspect-[5/3] inset-0 top-[51%] left-[53%] p-2'>
           <a href='https://www.layolay.com/' target='_blank'>
             <img src='assets/layolay.PNG' class='rounded-lg' />
           </a>
         </div>
         <!-- Lunchliner -->
-        <div class='absolute flex flex-col inset-0 top-[48%] left-[28%] mr-auto w-[72%] h-[10%]'>
+        <div class='absolute flex flex-col inset-0 top-[59.5%] left-[28%] mr-auto w-[70%] h-[10%]'>
           <div class='flex flex-row mr-auto'>
             <h1 class='text-white text-xl 2xl:text-4xl xl:text-4xl lg:text-3xl sm:text-2xl'>
               Lunchliner
@@ -188,7 +109,7 @@
             An application for finding restaurants along a route instead of what's immediately around you. Made in a weekend with React and the Google Maps API.
           </h1>
         </div>
-        <div  class='absolute rounded-lg bg-[#9E451A] w-[20vw] aspect-[5/3] inset-0 top-[47.5%] left-[68%] p-2'>
+        <div  class='absolute rounded-lg bg-[#9E451A] w-[18vw] aspect-[5/3] inset-0 top-[59.4%] left-[68%] p-2'>
           <a href='https://samuelperales.xyz/index.html' target='_blank'>
             <img src='assets/academic-blog.PNG' class='rounded-lg' />
           </a>
@@ -216,7 +137,7 @@
           </a>
         </div> -->
         <!-- More -->
-        <div class='absolute flex flex-col inset-0 top-[54.7%] left-[10%] mr-auto w-[65%] h-[300px]'>
+        <div class='absolute flex flex-col inset-0 top-[67.8%] left-[10%] mr-auto w-[65%] h-[300px]'>
           <div class='flex flex-row mr-auto'>
             <h1 class='text-white text-xl 2xl:text-4xl xl:text-4xl lg:text-3xl sm:text-2xl'>
               And Many More...
@@ -232,10 +153,10 @@
                 <img src='assets/robo-rosewater.PNG' class='rounded-lg hover:cursor-pointer aspect-square'/>
               </a>
               <div class='flex flex-col ml-4 w-[12vw]'>
-                <h1 class='text-white text-sm 2xl:text-xl xl:text-lg lg:text-base md:text-sm sm:text-sm mx-auto mt-2 ml-0'>
+                <h1 class='text-white text-sm 2xl:text-xl xl:text-lg lg:text-base md:text-sm sm:text-sm mx-auto mt-0 2xl:mt-2 md:mt-0 sm:mt-0 ml-0'>
                   Robo Rosewater
                 </h1>
-                <h1 class='text-white text-sm 2xl:text-base xl:text-sm lg:text-xs md:text-xs sm:text-xs mx-auto mt-2 ml-2'>
+                <h1 class='text-white text-sm 2xl:text-base xl:text-sm lg:text-xs md:text-xs sm:text-xs mx-auto mt-0 2xl:mt-2 md:mt-0 sm:mt-0 ml-2'>
                   Database for AI generated Magic the Gathering cards.
                 </h1>
               </div>
@@ -246,10 +167,10 @@
                 <img src='assets/even-colors.jpg' class='rounded-lg hover:cursor-pointer aspect-square' />
               </a>
               <div class='flex flex-col ml-4 w-[12vw]'>
-                <h1 class='text-white text-sm 2xl:text-xl xl:text-lg lg:text-base md:text-sm sm:text-sm mx-auto mt-2 ml-0'>
+                <h1 class='text-white text-sm 2xl:text-xl xl:text-lg lg:text-base md:text-sm sm:text-sm mx-auto mt-0 2xl:mt-2 md:mt-0 sm:mt-0 ml-0'>
                   Random Colors
                 </h1>
-                <h1 class='text-white text-sm 2xl:text-base xl:text-sm lg:text-xs md:text-xs sm:text-xs mx-auto mt-2 ml-2'>
+                <h1 class='text-white text-sm 2xl:text-base xl:text-sm lg:text-xs md:text-xs sm:text-xs mx-auto mt-0 2xl:mt-2 md:mt-0 sm:mt-0  ml-2'>
                   Optimized approach to generating colors and gradients.
                 </h1>
               </div>
@@ -259,11 +180,11 @@
               <a href='https://github.com/CapSnCrunch/random-colors' class='flex flex-col rounded-lg w-[7.8vw] h-[7.8vw] bg-[#9E451A] p-2'>
                 <img src='assets/fourier.PNG' class='rounded-lg hover:cursor-pointer aspect-square' />
               </a>
-              <div class='flex flex-col ml-4 w-[12vw]'>
-                <h1 class='text-white text-sm 2xl:text-xl xl:text-lg lg:text-base md:text-sm sm:text-sm mx-auto mt-2 ml-0'>
+              <div class='flex flex-col ml-4 w-[13vw]'>
+                <h1 class='text-white text-sm 2xl:text-xl xl:text-lg lg:text-base md:text-sm sm:text-sm mx-auto mt-0 2xl:mt-2 md:mt-0 sm:mt-0 ml-0'>
                   Fourier Visualizer
                 </h1>
-                <h1 class='text-white text-sm 2xl:text-base xl:text-sm lg:text-xs md:text-xs sm:text-xs mx-auto mt-2 ml-2'>
+                <h1 class='text-white text-sm 2xl:text-base xl:text-sm lg:text-xs md:text-xs sm:text-xs mx-auto mt-0 2xl:mt-2 md:mt-0 sm:mt-0  ml-2'>
                   Tool for learning about the 2D Fourier Transform.
                 </h1>
               </div>
@@ -272,7 +193,7 @@
           </div>
         </div>
         <!-- Contact -->
-        <div class='absolute flex flex-col inset-0 top-[68.1%] mx-auto w-[70%] h-[10%]'>
+        <div class='absolute flex flex-col inset-0 top-[84.7%] mx-auto w-[60%] h-[12.5%]'>
           <h1 class='text-white text-xl 2xl:text-5xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl mx-auto'>
             Lets get in touch!
           </h1>
@@ -302,6 +223,9 @@
           samuelperales4@gmail.com
         </h1>
       </div> -->
+    </div>
+    <div class='absolute flex flex-col w-full 2xl:hidden xl:hidden lg:hidden md:hidden sm:flex'>
+
     </div>
   </body>
 </html>
